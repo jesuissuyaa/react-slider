@@ -1,13 +1,27 @@
+# README
+
 ## about this project
 
-- CSS carousel for banners
+- CSS carousel for image
 - no. of banners: >= 3, changes over time
-- React
+- uses Gatsby.js & React
+
+## how to add images
+
+note: image dimension should be 4 x 3
+
+1. add image file under `/src/assets`
+2. import image in `index.js`
+3. add imported value in `const sources = [...` in `index.js`
+
+DONE!
 
 ## credits
 
 sample banners were taken from
 http://photoshopvip.net/116256
+
+# default README
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
@@ -34,7 +48,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
     ```
 
-1.  **Start developing.**
+2.  **Start developing.**
 
     Navigate into your new site’s directory and start it up.
 
@@ -43,7 +57,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     gatsby develop
     ```
 
-1.  **Open the source code and start editing!**
+3.  **Open the source code and start editing!**
 
     Your site is now running at `http://localhost:8000`!
 

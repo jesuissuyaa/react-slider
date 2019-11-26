@@ -1,14 +1,16 @@
 import React, { useState } from "react"
-import styles from "../styles/styles.module.css"
 import Banner1 from "../assets/sample01.jpg"
 import Banner2 from "../assets/sample02.jpg"
 import Banner3 from "../assets/sample03.jpg"
-// TODO: auto generate banner src url, use gatsby-source-file blahblah
-// TODO: create const for size
+
+// size constants
 const slideWidth = 40 // in vw
 const arrowSize = 5 // in vw
 const bubbleSize = 5 // in vw
+// basis for spacing; concept derived from Typography.js; http://kyleamathews.github.io/typography.js/what/
 const rhythm = 1 // in rem
+
+// arrows to select image in slider
 const LeftArrow = props => {
   return (
     <div
@@ -39,7 +41,24 @@ const RightArrow = props => {
     ></div>
   )
 }
-export default () => {
+// indicators under slider
+const Bubble = props => {
+  return (
+    <div
+      style={{
+        borderRadius: `50%`,
+        width: `${bubbleSize}vw`,
+        height: `${bubbleSize}vw`,
+        background: `salmon`,
+        opacity: props.isCurrent ? 1 : 0.3,
+        transition: `opacity 1s`,
+        margin: `${rhythm / 4}rem`,
+      }}
+    ></div>
+  )
+}
+
+export default ({ data }) => {
   // array of source URLs to images in slider
   const sources = [Banner1, Banner2, Banner3]
   // set index for array
@@ -71,26 +90,15 @@ export default () => {
                 transition: `transform 1s`,
               }}
               key={item}
-              alt={`${i}番目の画像`}
+              alt={`${i}th image`}
             />
           ))}
         </div>
         <RightArrow onClick={() => setIndex(Math.min(num - 1, index + 1))} />
       </div>
       <div style={{ display: `flex`, justifyContent: `center` }}>
-        {sources.map((_, i) => (
-          <div
-            style={{
-              borderRadius: `50%`,
-              width: `${bubbleSize}vw`,
-              height: `${bubbleSize}vw`,
-              background: `salmon`,
-              opacity: index === i ? 1 : 0.3,
-              transition: `opacity 1s`,
-              margin: `${rhythm / 4}rem`,
-            }}
-            key={i}
-          ></div>
+        {[...Array(num)].map((_, i) => (
+          <Bubble isCurrent={index === i} key={i} />
         ))}
       </div>
     </div>
